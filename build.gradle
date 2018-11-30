@@ -42,3 +42,7 @@ dependencies {
     testCompile "io.ktor:ktor-server-tests:$ktor_version"
 
 }
+
+task stage {
+    dependsOn installDist
+}
