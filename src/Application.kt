@@ -1,29 +1,16 @@
 package com.perfect
 
 import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import io.ktor.routing.*
-import io.ktor.http.*
-import io.ktor.sessions.*
 import io.ktor.auth.*
 import com.fasterxml.jackson.databind.*
-import io.ktor.config.ApplicationConfig
+import data.DatabaseHelper
 import io.ktor.jackson.*
 import io.ktor.features.*
-import org.jetbrains.exposed.sql.Database
+import io.ktor.routing.Routing
+import rest.RouteHelper
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
-
-fun initDatabase(config: ApplicationConfig) {
-    Database.connect(
-        "jdbc:postgresql://${config.property("host").toString()}:${config.property("port")}/${config.property("name").toString()}\n",
-        driver = "org.postgresql.Driver",
-        user = config.property("username").toString(),
-        password = config.property("password").toString()
-    )
-}
 
 @kotlin.jvm.JvmOverloads
 fun Application.main(testing: Boolean = false) {
@@ -36,43 +23,21 @@ fun Application.main(testing: Boolean = false) {
     // Automatic '304 Not Modified' Responses
     install(ConditionalHeaders)
 
+    //JWT authentication
+    install(Authentication)
 
-    install(Sessions) {
-        cookie<MySession>("MY_SESSION") {
-            cookie.extensions["SameSite"] = "lax"
-        }
-    }
-
-    install(Authentication) {
-    }
-
+    // Enabling JSON by Jackson
     install(ContentNegotiation) {
         jackson {
             enable(SerializationFeature.INDENT_OUTPUT)
         }
     }
 
-    initDatabase(environment.config.config("database"))
+    install(Routing)
 
-    routing {
-        get("/") {
-            call.respondText(
-                environment.config.property("ktor.deployment.port")?.getString() ?: "an",
-                contentType = ContentType.Text.Plain
-            )
-        }
+    DatabaseHelper.init(environment.config.config("database"))
+    RouteHelper.init(this)
 
-        get("/session/increment") {
-            val session = call.sessions.get<MySession>() ?: MySession()
-            call.sessions.set(session.copy(count = session.count + 1))
-            call.respondText("Counter is ${session.count}. Refresh to increment.")
-        }
-
-        get("/json/jackson") {
-            call.respond(mapOf("hello" to "world"))
-        }
-    }
 }
 
-data class MySession(val count: Int = 0)
 
