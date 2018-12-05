@@ -1,12 +1,10 @@
-package rest
+package com.perfect.pumpkin.rest
 
 import com.perfect.Market
 import com.perfect.Point
 import com.perfect.PriceReport
-import data.MarketEntity
-import data.Repository
+import com.perfect.pumpkin.data.Repository
 import io.ktor.application.*
-import io.ktor.auth.*
 import io.ktor.response.*
 import io.ktor.routing.*
 

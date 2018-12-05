@@ -1,4 +1,4 @@
-package data
+package com.perfect.pumpkin.data
 
 import io.ktor.config.ApplicationConfig
 import org.jetbrains.exposed.sql.Database

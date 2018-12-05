@@ -1,4 +1,4 @@
-package data
+package com.perfect.pumpkin.data
 
 fun insertBaseData() {
     insertMarkets()

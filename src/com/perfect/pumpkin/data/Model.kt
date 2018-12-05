@@ -1,4 +1,4 @@
-package data
+package com.perfect.pumpkin.data
 
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IdTable
@@ -7,7 +7,11 @@ import org.jetbrains.exposed.dao.UUIDTable
 import org.jetbrains.exposed.sql.Column
 
 
-val ALL_MODELS = arrayOf(UserTable, MarketTable, TikTable)
+val ALL_MODELS = arrayOf(
+    UserTable,
+    MarketTable,
+    TikTable
+)
 
 object UserTable : UUIDTable("users") {
     var email = varchar("email", 100)
