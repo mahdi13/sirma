@@ -1,4 +1,4 @@
-package com.perfect.pumpkin.data
+package com.perfect.sirma.data
 
 fun insertBaseData() {
     insertMarkets()

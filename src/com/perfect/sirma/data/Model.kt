@@ -1,4 +1,4 @@
-package com.perfect.pumpkin.data
+package com.perfect.sirma.data
 
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IdTable

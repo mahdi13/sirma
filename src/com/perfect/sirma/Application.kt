@@ -1,13 +1,13 @@
-package com.perfect.pumpkin
+package com.perfect.sirma
 
 import io.ktor.application.*
 import io.ktor.auth.*
 import com.fasterxml.jackson.databind.*
-import com.perfect.pumpkin.data.DatabaseHelper
+import com.perfect.sirma.data.DatabaseHelper
 import io.ktor.jackson.*
 import io.ktor.features.*
 import io.ktor.routing.Routing
-import com.perfect.pumpkin.rest.RouteHelper
+import com.perfect.sirma.rest.RouteHelper
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 

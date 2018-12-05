@@ -1,4 +1,4 @@
-package com.perfect.pumpkin.data
+package com.perfect.sirma.data
 
 import org.jetbrains.exposed.sql.transactions.transaction
 

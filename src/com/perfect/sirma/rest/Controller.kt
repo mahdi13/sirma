@@ -1,9 +1,9 @@
-package com.perfect.pumpkin.rest
+package com.perfect.sirma.rest
 
 import com.perfect.Market
 import com.perfect.Point
 import com.perfect.PriceReport
-import com.perfect.pumpkin.data.Repository
+import com.perfect.sirma.data.Repository
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
